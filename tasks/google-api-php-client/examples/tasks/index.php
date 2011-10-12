@@ -56,15 +56,18 @@ if (isset($_GET['code'])) {
 <?php
   $lists = $tasksService->tasklists->listTasklists();
   foreach ($lists['items'] as $list) {
-    print "<h3>{$list['name']}</h3>";
+    print "<h3>{$list['title']}</h3>";
+//    print_r($list);
     $tasks = $tasksService->tasks->listTasks($list['id']);
     foreach ($tasks['items'] as $task) {
-      $updated = new Task($task);
-      $updated->setNotes('Test');
-      $updated->setTitle($task['title'] + ' ' . time());
-      $tasksService->tasks->update($list['id'], $task['id'], $updated);
+//      $updated = new Task($task);
+//      $updated->setNotes('Test');
+//      $updated->setTitle($task['title'] + ' ' . time());
+//      $tasksService->tasks->update($list['id'], $task['id'], $updated);
       print "<p id='post'>{$task['title']}</p>";
+      print_r($task);
     }
+    print_r($_SESSION['access_token']);
   }
 ?>
   </div>
